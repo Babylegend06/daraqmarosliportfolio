@@ -21,7 +21,8 @@
       --accent: #6c5ce7;
       --accent-glow: #8870ff;
       --text: #f0f0ff;
-      --glow: 0 0 15px rgba(108, 92, 231, 0.6);
+      --whatsapp: #25D366;
+      --id-card-bg: #121025;
     }
 
     body {
@@ -31,14 +32,18 @@
       min-height: 100vh;
       padding: 2.5rem 1.5rem;
       overflow-x: hidden;
+      position: relative;
     }
 
+    /* ===== KAD UTAMA (FLIP) ===== */
     .hero {
       text-align: center;
       margin-bottom: 4rem;
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
+      position: relative;
+      z-index: 10;
     }
 
     .flip-card {
@@ -55,7 +60,7 @@
       text-align: center;
       transition: transform 0.8s;
       transform-style: preserve-3d;
-      box-shadow: var(--glow);
+      box-shadow: 0 0 20px rgba(108, 92, 231, 0.7);
       border-radius: 20px;
       cursor: pointer;
     }
@@ -86,7 +91,7 @@
     .flip-card-back {
       background: var(--card-back);
       transform: rotateY(180deg);
-      border: 2px solid #25D366;
+      border: 2px solid var(--whatsapp);
     }
 
     .profile-img {
@@ -128,13 +133,14 @@
     }
 
     .contact-banner a {
-      color: #25D366;
+      color: var(--whatsapp);
       font-weight: 800;
       text-decoration: none;
       margin-left: 0.4rem;
       font-family: 'Poppins', sans-serif;
     }
 
+    /* ===== TAJUK & KANDUNGAN ===== */
     .section-title {
       font-family: 'Poppins', sans-serif;
       font-size: 2.2rem;
@@ -144,6 +150,24 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 12px rgba(108, 92, 231, 0.3);
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .skill-tag {
+      background: rgba(108, 92, 231, 0.15);
+      color: #a29bfe;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(108, 92, 231, 0.3);
     }
 
     .projects-grid {
@@ -182,23 +206,6 @@
       color: #e0e0ff;
     }
 
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 1.5rem;
-    }
-
-    .skill-tag {
-      background: rgba(108, 92, 231, 0.15);
-      color: #a29bfe;
-      padding: 0.4rem 1rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      border: 1px solid rgba(108, 92, 231, 0.3);
-    }
-
     footer {
       text-align: center;
       margin-top: 5rem;
@@ -207,26 +214,101 @@
       font-size: 0.95rem;
     }
 
+    /* ===== KAD ID BERTALI (DRAGGABLE) ===== */
+    #id-card {
+      position: absolute;
+      top: 80px;
+      right: 30px;
+      width: 130px;
+      height: 180px;
+      background: var(--id-card-bg);
+      border-radius: 12px;
+      border: 1px solid rgba(108, 92, 231, 0.4);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      z-index: 100;
+      cursor: grab;
+      user-select: none;
+      transition: box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px;
+    }
+
+    #id-card:active {
+      cursor: grabbing;
+    }
+
+    #id-card:hover {
+      box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
+    }
+
+    .id-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      box-shadow: 0 0 10px rgba(108, 92, 231, 0.6);
+    }
+
+    .id-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+      color: #e0e0ff;
+      margin-bottom: 4px;
+    }
+
+    .id-role {
+      font-size: 0.7rem;
+      color: #a29bfe;
+      text-align: center;
+    }
+
+    .id-logo {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      background: rgba(37, 211, 102, 0.2);
+      color: #25D366;
+      padding: 2px 6px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    /* Responsif */
     @media (max-width: 768px) {
-      .projects-grid {
-        grid-template-columns: 1fr;
-        padding: 0 0.5rem;
-      }
-      .flip-card {
-        width: 180px;
-        height: 180px;
-      }
-      .profile-img {
+      #id-card {
+        top: 70px;
+        right: 15px;
         width: 110px;
-        height: 110px;
+        height: 150px;
       }
-      .section-title {
-        font-size: 1.8rem;
-      }
+      .id-avatar { width: 50px; height: 50px; font-size: 0.9rem; }
+      .id-name { font-size: 0.75rem; }
+      .id-role { font-size: 0.6rem; }
     }
   </style>
 </head>
 <body>
+  <!-- KAD ID BERTALI (DRAGGABLE) -->
+  <div id="id-card">
+    <div class="id-logo">TECHXY</div>
+    <div class="id-avatar">D</div>
+    <div class="id-name">DAR AQMA</div>
+    <div class="id-role">Founder & Engineer</div>
+  </div>
+
+  <!-- KANDUNGAN UTAMA -->
   <div class="hero">
     <div class="flip-card">
       <div class="flip-card-inner">
@@ -289,40 +371,113 @@
 
   <footer>
     © 2025 DAR AQMA BIN ROSLI • Techxy Solutions<br>
-    Portfolio Interaktif | Dibina dengan Teknologi & Kreativiti
+    Portfolio Interaktif dengan Fizikal Digital
   </footer>
 
   <script>
-    // Tambahkan sedikit interaksi: flip card sentuh di mobile
+    // === FUNGSI KAD ID BERTALI (DRAG + SPRING) ===
+    const idCard = document.getElementById('id-card');
+    let isDragging = false;
+    let offsetX, offsetY;
+    const springPos = { x: window.innerWidth - 160, y: 80 }; // posisi asal
+    let currentPos = { ...springPos };
+    let velocity = { x: 0, y: 0 };
+    let animationId = null;
+
+    // Tetapkan posisi asal mengikut saiz skrin
+    function setOriginalPosition() {
+      springPos.x = window.innerWidth - 160;
+      springPos.y = 80;
+      if (window.innerWidth < 768) {
+        springPos.x = window.innerWidth - 125;
+        springPos.y = 70;
+      }
+    }
+
+    window.addEventListener('resize', setOriginalPosition);
+    setOriginalPosition();
+
+    idCard.addEventListener('mousedown', startDrag);
+    idCard.addEventListener('touchstart', e => {
+      e.preventDefault();
+      startDrag(e.touches[0]);
+    });
+
+    function startDrag(e) {
+      isDragging = true;
+      const rect = idCard.getBoundingClientRect();
+      if (e.clientX !== undefined) {
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+      } else {
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+      }
+      document.addEventListener('mousemove', onDrag);
+      document.addEventListener('touchmove', onDragTouch, { passive: false });
+      document.addEventListener('mouseup', stopDrag);
+      document.addEventListener('touchend', stopDrag);
+    }
+
+    function onDrag(e) {
+      if (!isDragging) return;
+      currentPos.x = e.clientX - offsetX;
+      currentPos.y = e.clientY - offsetY;
+      idCard.style.transform = `translate(${currentPos.x - springPos.x}px, ${currentPos.y - springPos.y}px)`;
+      velocity.x = velocity.y = 0; // hentikan spring bila drag
+    }
+
+    function onDragTouch(e) {
+      if (!isDragging) return;
+      const touch = e.touches[0];
+      currentPos.x = touch.clientX - offsetX;
+      currentPos.y = touch.clientY - offsetY;
+      idCard.style.transform = `translate(${currentPos.x - springPos.x}px, ${currentPos.y - springPos.y}px)`;
+      velocity.x = velocity.y = 0;
+      e.preventDefault();
+    }
+
+    function stopDrag() {
+      isDragging = false;
+      document.removeEventListener('mousemove', onDrang);
+      document.removeEventListener('touchmove', onDragTouch);
+      document.removeEventListener('mouseup', stopDrag);
+      document.removeEventListener('touchend', stopDrag);
+      startSpringAnimation();
+    }
+
+    function startSpringAnimation() {
+      if (animationId) cancelAnimationFrame(animationId);
+      springAnimate();
+    }
+
+    function springAnimate() {
+      const dx = springPos.x - currentPos.x;
+      const dy = springPos.y - currentPos.y;
+      const friction = 0.85;
+      const springStrength = 0.2;
+
+      velocity.x = velocity.x * friction + dx * springStrength;
+      velocity.y = velocity.y * friction + dy * springStrength;
+
+      currentPos.x += velocity.x;
+      currentPos.y += velocity.y;
+
+      idCard.style.transform = `translate(${currentPos.x - springPos.x}px, ${currentPos.y - springPos.y}px)`;
+
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance > 0.5 || Math.abs(velocity.x) > 0.1 || Math.abs(velocity.y) > 0.1) {
+        animationId = requestAnimationFrame(springAnimate);
+      } else {
+        currentPos = { ...springPos };
+        idCard.style.transform = 'translate(0,0)';
+      }
+    }
+
+    // === FLIP CARD INTERAKSI (sedia ada) ===
     document.querySelectorAll('.flip-card').forEach(card => {
-      let isDragging = false;
-      let startX = 0;
-      let currentX = 0;
-
-      card.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        startX = e.clientX;
-        card.style.cursor = 'grabbing';
-      });
-
-      card.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        currentX = e.clientX;
-        if (Math.abs(currentX - startX) > 30) {
-          card.querySelector('.flip-card-inner').style.transform = 'rotateY(180deg)';
-        }
-      });
-
-      card.addEventListener('mouseup', () => {
-        isDragging = false;
-        card.style.cursor = 'pointer';
-      });
-
-      card.addEventListener('mouseleave', () => {
-        if (isDragging) {
-          isDragging = false;
-          card.style.cursor = 'pointer';
-        }
+      card.addEventListener('click', () => {
+        card.querySelector('.flip-card-inner').classList.toggle('flipped');
       });
     });
   </script>
