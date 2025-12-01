@@ -2,7 +2,7 @@
 <html lang="ms">
 <head>
   <meta charset="UTF-8" />
-  <meta name=" viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DAR AQMA | Techxy Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,17 +29,113 @@
       background: linear-gradient(135deg, #0c0a1f, #1a172c, #241f3a);
       color: var(--text);
       min-height: 100vh;
-      padding: 2.5rem 1.5rem;
+      padding: 2rem 1.5rem;
       overflow-x: hidden;
       position: relative;
+      perspective: 1000px;
     }
 
-    /* --- KAD UTAMA (FLIP) --- */
+    /* --- Tali Gantung --- */
+    #string {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 2px;
+      transform-origin: top center;
+      z-index: 90;
+      width: 2px;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-1px);
+    }
+
+    /* --- Titik Gantung (di tengah atas) --- */
+    #anchor {
+      position: absolute;
+      top: 76px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 12px;
+      background: #6c5ce7;
+      border-radius: 50%;
+      z-index: 95;
+      box-shadow: 0 0 12px #6c5ce7;
+    }
+
+    /* --- Kad Gantung (3D) --- */
+    #id-card {
+      position: absolute;
+      width: 140px;
+      height: 200px;
+      background: var(--id-card-bg);
+      border-radius: 16px;
+      border: 1px solid rgba(108, 92, 231, 0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 92;
+      cursor: grab;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      /* 3D Transform */
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+    }
+
+    #id-card:active {
+      cursor: grabbing;
+    }
+
+    .id-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      box-shadow: 0 0 15px rgba(108, 92, 231, 0.7);
+    }
+
+    .id-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-align: center;
+      color: #e0e0ff;
+      margin-bottom: 6px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .id-role {
+      font-size: 0.75rem;
+      color: #a29bfe;
+      text-align: center;
+    }
+
+    .id-logo {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      background: rgba(37, 211, 102, 0.25);
+      color: #25D366;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    /* --- Kandungan Utama (Portfolio) --- */
     .hero {
       text-align: center;
-      margin-bottom: 4rem;
+      margin: 280px auto 4rem;
       max-width: 800px;
-      margin: 0 auto 4rem;
       position: relative;
       z-index: 10;
     }
@@ -201,87 +297,14 @@
       opacity: 0.7;
       font-size: 0.95rem;
     }
-
-    /* --- KAD GANTUNG (HANGING ID CARD) --- */
-    #hanging-point {
-      position: absolute;
-      top: 60px;
-      right: 100px;
-      width: 8px;
-      height: 8px;
-      background: #6c5ce7;
-      border-radius: 50%;
-      z-index: 99;
-      box-shadow: 0 0 8px #6c5ce7;
-    }
-
-    #id-card {
-      position: absolute;
-      width: 130px;
-      height: 180px;
-      background: var(--id-card-bg);
-      border-radius: 12px;
-      border: 1px solid rgba(108, 92, 231, 0.4);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      z-index: 98;
-      cursor: grab;
-      user-select: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 12px;
-      transform-origin: top center;
-    }
-
-    #id-card:active {
-      cursor: grabbing;
-    }
-
-    .id-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-      box-shadow: 0 0 10px rgba(108, 92, 231, 0.6);
-    }
-
-    .id-name { font-size: 0.85rem; font-weight: 700; text-align: center; color: #e0e0ff; margin-bottom: 4px; }
-    .id-role { font-size: 0.7rem; color: #a29bfe; text-align: center; }
-
-    .id-logo {
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.65rem;
-      background: rgba(37, 211, 102, 0.2);
-      color: #25D366;
-      padding: 2px 6px;
-      border-radius: 20px;
-      font-weight: bold;
-    }
-
-    @media (max-width: 768px) {
-      #hanging-point { top: 50px; right: 80px; }
-      #id-card { width: 110px; height: 150px; }
-      .id-avatar { width: 50px; height: 50px; font-size: 0.9rem; }
-      .id-name { font-size: 0.75rem; }
-      .id-role { font-size: 0.6rem; }
-    }
   </style>
 </head>
 <body>
-  <!-- Titik gantung (tidak kelihatan jika tak mahu) -->
-  <div id="hanging-point"></div>
-
-  <!-- Kad ID yang digantung -->
+  <!-- Titik gantung di tengah atas -->
+  <div id="anchor"></div>
+  <!-- Tali -->
+  <div id="string"></div>
+  <!-- Kad ID -->
   <div id="id-card">
     <div class="id-logo">TECHXY</div>
     <div class="id-avatar">D</div>
@@ -289,7 +312,7 @@
     <div class="id-role">Founder & Engineer</div>
   </div>
 
-  <!-- Kandungan utama -->
+  <!-- Kandungan utama portfolio -->
   <div class="hero">
     <div class="flip-card">
       <div class="flip-card-inner">
@@ -356,22 +379,21 @@
   </footer>
 
   <script>
-    // === FIZIKAL KAD GANTUNG (HANGING + SPRING + GRAVITY) ===
+    // === SIMULASI TALI & KAD 3D ===
     const card = document.getElementById('id-card');
-    const hangingPoint = document.getElementById('hanging-point');
-    
-    // Parameter fizikal (boleh adjust!)
+    const string = document.getElementById('string');
+    const anchor = document.getElementById('anchor');
+
     const params = {
-      restLength: 80,    // panjang tali asal (dalam px)
-      gravity: 0.8,      // graviti
-      springK: 0.08,     // kekuatan spring (elastik)
-      damping: 0.94,     // redaman (0.9 = bounce, 0.99 = smooth)
+      restLength: 180,   // panjang tali asal (dalam px)
+      gravity: 1.0,      // graviti
+      springK: 0.06,     // kekuatan spring
+      damping: 0.93,     // redaman (bounce)
+      isDragging: false,
       mouseX: 0,
-      mouseY: 0,
-      isDragging: false
+      mouseY: 0
     };
 
-    // Keadaan simulasi
     let state = {
       x: 0,
       y: params.restLength,
@@ -379,25 +401,18 @@
       vy: 0
     };
 
-    // Kedudukan titik gantung (atas)
-    let anchorX = window.innerWidth - 100;
-    let anchorY = 60;
+    const anchorY = 80; // tetap di tengah atas
+    let anchorX = window.innerWidth / 2;
 
     function updateAnchor() {
-      anchorX = window.innerWidth - 100;
-      anchorY = 60;
-      if (window.innerWidth < 768) {
-        anchorX = window.innerWidth - 80;
-        anchorY = 50;
-      }
-      hangingPoint.style.left = (anchorX - 4) + 'px';
-      hangingPoint.style.top = (anchorY - 4) + 'px';
+      anchorX = window.innerWidth / 2;
+      anchor.style.left = (anchorX - 6) + 'px';
     }
 
     window.addEventListener('resize', updateAnchor);
     updateAnchor();
 
-    // Input tetikus / sentuh
+    // Input
     card.addEventListener('mousedown', startDrag);
     card.addEventListener('touchstart', e => {
       e.preventDefault();
@@ -435,18 +450,13 @@
       document.removeEventListener('touchend', stopDrag);
     }
 
-    // Simulasi fizikal utama
+    // Simulasi fizikal + visual
     function simulate() {
       if (params.isDragging) {
-        // Kalau sedang ditarik, ikut tetikus
-        const dx = (params.mouseX - anchorX) - state.x;
-        const dy = (params.mouseY - anchorY) - state.y;
-        state.vx = dx * 0.3;
-        state.vy = dy * 0.3;
         state.x = params.mouseX - anchorX;
         state.y = params.mouseY - anchorY;
+        state.vx = state.vy = 0;
       } else {
-        // Spring + gravity
         const length = Math.sqrt(state.x * state.x + state.y * state.y);
         const stretch = length - params.restLength;
         const springForce = stretch * params.springK;
@@ -463,18 +473,31 @@
         state.y += state.vy;
       }
 
-      // Update posisi kad
-      card.style.left = (anchorX + state.x - card.offsetWidth / 2) + 'px';
-      card.style.top = (anchorY + state.y) + 'px';
+      // Kedudukan kad
+      const cardX = anchorX + state.x - card.offsetWidth / 2;
+      const cardY = anchorY + state.y;
+      card.style.left = cardX + 'px';
+      card.style.top = cardY + 'px';
 
-      // Rotate kad berdasarkan sudut tali
-      const angle = Math.atan2(state.y, state.x) + Math.PI / 2;
-      card.style.transform = `rotate(${angle}rad)`;
+      // Panjang & sudut tali
+      const length = Math.sqrt(state.x * state.x + state.y * state.y);
+      const angle = Math.atan2(state.y, state.x); // radian
+
+      // Update tali
+      string.style.height = length + 'px';
+      string.style.transform = `rotate(${angle}rad)`;
+      string.style.top = anchorY + 'px';
+      string.style.left = anchorX + 'px';
+      string.style.transformOrigin = 'top center';
+
+      // 3D Rotation kad (ikut ayunan)
+      const rotY = state.x * 0.03; // sensitiviti
+      const rotX = -state.y * 0.01;
+      card.style.transform = `rotateX(${rotX}rad) rotateY(${rotY}rad)`;
 
       requestAnimationFrame(simulate);
     }
 
-    // Mulakan simulasi
     simulate();
   </script>
 </body>
