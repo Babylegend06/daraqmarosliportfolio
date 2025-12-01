@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DAR AQMA | Portfolio</title>
+  <title>DAR AQMA | Techxy Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,284 +15,314 @@
     }
 
     :root {
-      --glass-bg: rgba(255, 255, 255, 0.12);
-      --glass-border: rgba(255, 255, 255, 0.18);
-      --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+      --bg: #0c0a1f;
+      --card-front: #141228;
+      --card-back: #1a1732;
       --accent: #6c5ce7;
-      --text: #ffffff;
-      --bg: #0f0c29;
-      --card-bg: rgba(30, 25, 63, 0.4);
-      --whatsapp: #25D366;
+      --accent-glow: #8870ff;
+      --text: #f0f0ff;
+      --glow: 0 0 15px rgba(108, 92, 231, 0.6);
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      background: linear-gradient(135deg, #0c0a1f, #1a172c, #241f3a);
       color: var(--text);
       min-height: 100vh;
-      padding: 2rem;
+      padding: 2.5rem 1.5rem;
       overflow-x: hidden;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    header {
+    .hero {
       text-align: center;
-      margin-bottom: 3rem;
-      animation: fadeIn 1s ease-out;
+      margin-bottom: 4rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .profile-pic {
-      width: 160px;
-      height: 160px;
+    .flip-card {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 2rem;
+      perspective: 1000px;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      box-shadow: var(--glow);
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.2rem;
+    }
+
+    .flip-card-front {
+      background: var(--card-front);
+      border: 2px solid var(--accent);
+    }
+
+    .flip-card-back {
+      background: var(--card-back);
+      transform: rotateY(180deg);
+      border: 2px solid #25D366;
+    }
+
+    .profile-img {
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      border: 4px solid var(--accent);
       object-fit: cover;
-      margin: 0 auto 1.5rem;
-      background: var(--card-bg);
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 20px rgba(108, 92, 231, 0.7);
+    }
+
+    .profile-img.placeholder {
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      box-shadow: 0 0 25px rgba(108, 92, 231, 0.6);
-    }
-
-    .profile-pic img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .profile-pic .placeholder {
-      color: #bbb;
-      font-size: 0.95rem;
+      color: #777;
+      font-size: 0.85rem;
       text-align: center;
-      padding: 0.5rem;
     }
 
-    h1 {
-      font-size: 2.6rem;
-      margin-bottom: 0.4rem;
-      background: linear-gradient(to right, #a29bfe, #6c5ce7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .subtitle {
-      font-weight: 300;
-      opacity: 0.92;
-      margin-bottom: 1rem;
+    .flip-card h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      margin-top: 1rem;
+      color: white;
+      text-shadow: 0 0 8px rgba(108, 92, 231, 0.8);
     }
 
     .contact-banner {
-      background: rgba(37, 211, 102, 0.15);
-      border: 1px solid rgba(37, 211, 102, 0.3);
+      background: rgba(37, 211, 102, 0.12);
+      border: 1px solid rgba(37, 211, 102, 0.4);
       border-radius: 16px;
-      padding: 1rem;
-      margin: 1.5rem auto;
-      max-width: 600px;
-      text-align: center;
-      font-weight: 500;
+      padding: 1rem 1.5rem;
+      margin: 1.8rem auto;
+      max-width: 650px;
+      font-weight: 600;
       color: #e0ffe0;
+      font-size: 1.05rem;
     }
 
     .contact-banner a {
       color: #25D366;
-      font-weight: 700;
+      font-weight: 800;
       text-decoration: none;
-      margin-left: 0.3rem;
+      margin-left: 0.4rem;
+      font-family: 'Poppins', sans-serif;
     }
 
-    .glass-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--glass-border);
-      border-radius: 22px;
-      padding: 2rem;
-      margin-bottom: 2.2rem;
-      box-shadow: var(--glass-shadow);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-    }
-
-    .glass-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 14px 48px rgba(108, 92, 231, 0.35);
-    }
-
-    h2 {
-      font-size: 1.9rem;
-      margin-bottom: 1.3rem;
-      color: #e0e0ff;
-      display: flex;
-      align-items: center;
-    }
-
-    h2::before {
-      content: "";
-      display: inline-block;
-      width: 6px;
-      height: 24px;
-      background: var(--accent);
-      border-radius: 3px;
-      margin-right: 12px;
-    }
-
-    ul {
-      padding-left: 1.4rem;
-      margin-bottom: 1.1rem;
-    }
-
-    li {
-      margin-bottom: 0.65rem;
-      line-height: 1.6;
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.2rem;
+      text-align: center;
+      margin: 3.5rem 0 2.5rem;
+      background: linear-gradient(90deg, #a29bfe, #6c5ce7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 12px rgba(108, 92, 231, 0.3);
     }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.6rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
     }
 
     .project-card {
-      padding: 1.4rem;
-      background: rgba(255, 255, 255, 0.07);
-      border-radius: 18px;
-      transition: all 0.3s ease;
+      background: rgba(20, 18, 40, 0.7);
+      border: 1px solid rgba(108, 92, 231, 0.3);
+      border-radius: 20px;
+      padding: 1.8rem;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(10px);
     }
 
     .project-card:hover {
-      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(108, 92, 231, 0.4);
+      border-color: rgba(108, 92, 231, 0.6);
     }
 
     .project-card h3 {
+      font-family: 'Poppins', sans-serif;
       color: #a29bfe;
-      margin-bottom: 0.7rem;
-      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-size: 1.35rem;
+    }
+
+    .project-card p {
+      line-height: 1.6;
+      color: #e0e0ff;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .skill-tag {
+      background: rgba(108, 92, 231, 0.15);
+      color: #a29bfe;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(108, 92, 231, 0.3);
     }
 
     footer {
       text-align: center;
-      margin-top: 3.5rem;
-      opacity: 0.75;
-      font-size: 0.95rem;
+      margin-top: 5rem;
       padding-bottom: 2rem;
+      opacity: 0.7;
+      font-size: 0.95rem;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(25px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in {
-      animation: fadeIn 0.9s ease-out forwards;
-      opacity: 0;
-    }
-
-    .delay-1 { animation-delay: 0.2s; }
-    .delay-2 { animation-delay: 0.4s; }
-    .delay-3 { animation-delay: 0.6s; }
-    .delay-4 { animation-delay: 0.8s; }
 
     @media (max-width: 768px) {
-      body { padding: 1.2rem; }
-      h1 { font-size: 2.1rem; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .contact-banner {
-        font-size: 0.95rem;
-        padding: 0.9rem;
+      .projects-grid {
+        grid-template-columns: 1fr;
+        padding: 0 0.5rem;
+      }
+      .flip-card {
+        width: 180px;
+        height: 180px;
+      }
+      .profile-img {
+        width: 110px;
+        height: 110px;
+      }
+      .section-title {
+        font-size: 1.8rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header class="fade-in">
-      <div class="profile-pic">
-        <img src="gambarmuka.jpg" alt="DAR AQMA BIN ROSLI" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder\'>gambarmuka.jpg<br>(160x160)</div>'">
-      </div>
-      <h1>DAR AQMA BIN ROSLI</h1>
-      <p class="subtitle">_Pelajar Elektronik • Streamer • Founder @ Techxy</p>
-      
-      <div class="contact-banner">
-        📞 Sebarang pertanyaan perniagaan atau ingin jadi partner? 
-        <a href="https://wa.me/60189892155" target="_blank">WhatsApp +60189892155</a>
-      </div>
-    </header>
-
-    <section class="glass-card fade-in delay-1">
-      <h2>Tentang Saya</h2>
-      <p>Minat saya terhadap teknologi bermula sejak tahun 6, apabila ayah memberi telefon rosak. Saya buka sendiri, kesan komponen yang rosak, cari gantian, dan berjaya membaikinya. Dari situ lahir minat mendalam dalam elektronik & pembangunan perisian.</p>
-      <p>Hari ini, saya membina sistem IoT, aplikasi Flutter, projek AI, dan menyediakan servis pembaikan telefon & laptop melalui <strong>Techxy</strong>.</p>
-    </section>
-
-    <section class="glass-card fade-in delay-2">
-      <h2>Kemahiran Utama</h2>
-      <ul>
-        <li>🔌 Reka bentuk & pembangunan sistem elektronik (ESP32, Arduino, PLC Omron CP1E)</li>
-        <li>🌐 Pembangunan web & API (Laravel, Firebase, HTML/CSS, JavaScript)</li>
-        <li>📱 Aplikasi mudah alih (Flutter - Android/iOS)</li>
-        <li>🤖 AI & Computer Vision (OpenCV, Voice Recognition)</li>
-        <li>🔧 Pembaikan telefon & laptop (hardware & software troubleshooting)</li>
-        <li>📡 IoT Integration, PCB Design (Proteus), Wiring & Automation</li>
-      </ul>
-    </section>
-
-    <section class="glass-card fade-in delay-3">
-      <h2>Projek Pilihan</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>Smart Dobi QR</h3>
-          <p>Pengguna scan QR → bayar → ESP32 aktifkan mesin basuh + notifikasi WhatsApp automatik.</p>
+  <div class="hero">
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div>
+            <img 
+              src="gambarmuka.jpg" 
+              alt="DAR AQMA" 
+              class="profile-img"
+              onerror="this.classList.add('placeholder'); this.src=''; this.innerHTML = 'gambarmuka.jpg<br>(220x220)';"
+            >
+          </div>
         </div>
-        <div class="project-card">
-          <h3>ESP32 + PLC Omron</h3>
-          <p>ESP32 baca isyarat dari PLC CP1E dan hantar ke Blynk dashboard secara real-time.</p>
-        </div>
-        <div class="project-card">
-          <h3>Signal Moto Auto-Off</h3>
-          <p>Sistem auto-off signal Y15ZR V2 menggunakan MPU6050 & ESP32 berdasarkan sudut kenderaan.</p>
-        </div>
-        <div class="project-card">
-          <h3>Aplikasi Panduan Solat</h3>
-          <p>Flutter app dengan voice recognition: ucap “Allahu Akbar” → langkah seterusnya.</p>
+        <div class="flip-card-back">
+          <h2>DAR AQMA</h2>
+          <p style="margin-top: 0.6rem; font-size: 0.95rem; color: #ccc;">Founder @ Techxy</p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="glass-card fade-in delay-4">
-      <h2>Bahasa & Minat</h2>
-      <p><strong>Bahasa:</strong> Bahasa Melayu, English, Loghat Kelantan, Kedah, Johor, Jawa</p>
-      <p><strong>Hobi:</strong> Menyokong Kelantan FA (fan tegar Indra Putra!), main Agent 17, menjalankan bisnes makanan (Roti John & jualan asrama)</p>
-      <p><strong>Perniagaan:</strong> <em>Techxy</em> – fokus pada IoT, robotik, AI, servis pembaikan, dan penyelesaian teknologi harian.</p>
-    </section>
-
-    <footer>
-      © 2025 DAR AQMA BIN ROSLI • Techxy Solutions<br>
-      Dibina dengan ❤️ & Teknologi | Kode & Kreasi Elektronik
-    </footer>
+    <h1 style="font-family: 'Poppins', sans-serif; font-size: 2.8rem; background: linear-gradient(90deg, #8870ff, #6c5ce7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">Inovator Teknologi & IoT</h1>
+    
+    <div class="contact-banner">
+      🚀 Untuk pertanyaan perniagaan atau kolaborasi, hubungi saya di 
+      <a href="https://wa.me/60189892155" target="_blank">WhatsApp +60189892155</a>
+    </div>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const fadeElements = document.querySelectorAll('.fade-in');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
+  <h2 class="section-title">Kemahiran Utama</h2>
+  <div class="skills-list">
+    <span class="skill-tag">ESP32 & Arduino</span>
+    <span class="skill-tag">PLC Omron CP1E</span>
+    <span class="skill-tag">Laravel & Firebase</span>
+    <span class="skill-tag">Flutter (Android/iOS)</span>
+    <span class="skill-tag">OpenCV & AI</span>
+    <span class="skill-tag">PCB Design (Proteus)</span>
+    <span class="skill-tag">Pembaikan Elektronik</span>
+    <span class="skill-tag">IoT & Automasi</span>
+  </div>
 
-      fadeElements.forEach(el => {
-        el.style.opacity = 0;
-        el.style.transform = 'translateY(25px)';
-        observer.observe(el);
+  <h2 class="section-title">Projek Pilihan</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <h3>Smart Dobi QR</h3>
+      <p>Sistem IoT untuk dobi: scan QR → bayar → ESP32 aktifkan mesin → notifikasi WhatsApp via CallMeBot API.</p>
+    </div>
+    <div class="project-card">
+      <h3>ESP32 + PLC Integration</h3>
+      <p>ESP32 baca isyarat dari PLC Omron CP1E dan paparkan data secara real-time di dashboard Blynk.</p>
+    </div>
+    <div class="project-card">
+      <h3>Auto-Off Signal Moto</h3>
+      <p>Sistem pintar untuk Y15ZR V2: guna MPU6050 & ESP32 untuk matikan signal secara automatik berdasarkan sudut.</p>
+    </div>
+    <div class="project-card">
+      <h3>Aplikasi Panduan Solat</h3>
+      <p>Aplikasi Flutter dengan pengenalan suara – ucap "Allahu Akbar" untuk ke langkah seterusnya.</p>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 DAR AQMA BIN ROSLI • Techxy Solutions<br>
+    Portfolio Interaktif | Dibina dengan Teknologi & Kreativiti
+  </footer>
+
+  <script>
+    // Tambahkan sedikit interaksi: flip card sentuh di mobile
+    document.querySelectorAll('.flip-card').forEach(card => {
+      let isDragging = false;
+      let startX = 0;
+      let currentX = 0;
+
+      card.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        card.style.cursor = 'grabbing';
+      });
+
+      card.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        currentX = e.clientX;
+        if (Math.abs(currentX - startX) > 30) {
+          card.querySelector('.flip-card-inner').style.transform = 'rotateY(180deg)';
+        }
+      });
+
+      card.addEventListener('mouseup', () => {
+        isDragging = false;
+        card.style.cursor = 'pointer';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if (isDragging) {
+          isDragging = false;
+          card.style.cursor = 'pointer';
+        }
       });
     });
   </script>
