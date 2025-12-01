@@ -32,45 +32,38 @@
       padding: 2rem 1.5rem;
       overflow-x: hidden;
       position: relative;
-      perspective: 1000px;
+    }
+
+    /* --- Titik "Leher" (anchor) --- */
+    #neck-anchor {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: transparent;
+      border-radius: 50%;
+      z-index: 100;
+      /* Akan ditentukan oleh JS */
     }
 
     /* --- Tali Gantung --- */
     #string {
       position: absolute;
-      background: rgba(255, 255, 255, 0.4);
+      background: rgba(200, 200, 255, 0.6);
       border-radius: 2px;
       transform-origin: top center;
       z-index: 90;
       width: 2px;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-1px);
     }
 
-    /* --- Titik Gantung (di tengah atas) --- */
-    #anchor {
-      position: absolute;
-      top: 76px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 12px;
-      height: 12px;
-      background: #6c5ce7;
-      border-radius: 50%;
-      z-index: 95;
-      box-shadow: 0 0 12px #6c5ce7;
-    }
-
-    /* --- Kad Gantung (3D) --- */
+    /* --- Kad ID Gantung --- */
     #id-card {
       position: absolute;
-      width: 140px;
-      height: 200px;
+      width: 130px;
+      height: 180px;
       background: var(--id-card-bg);
-      border-radius: 16px;
-      border: 1px solid rgba(108, 92, 231, 0.5);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border-radius: 14px;
+      border: 1px solid rgba(108, 92, 231, 0.4);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
       z-index: 92;
       cursor: grab;
       user-select: none;
@@ -78,8 +71,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 14px;
-      /* 3D Transform */
+      padding: 12px;
       transform-style: preserve-3d;
       backface-visibility: hidden;
     }
@@ -89,8 +81,8 @@
     }
 
     .id-avatar {
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       background: linear-gradient(135deg, #6c5ce7, #a29bfe);
       display: flex;
@@ -98,43 +90,43 @@
       justify-content: center;
       color: white;
       font-weight: bold;
-      font-size: 1.3rem;
-      margin-bottom: 12px;
-      box-shadow: 0 0 15px rgba(108, 92, 231, 0.7);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      box-shadow: 0 0 12px rgba(108, 92, 231, 0.7);
     }
 
     .id-name {
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       font-weight: 700;
       text-align: center;
       color: #e0e0ff;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       font-family: 'Poppins', sans-serif;
     }
 
     .id-role {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: #a29bfe;
       text-align: center;
     }
 
     .id-logo {
       position: absolute;
-      top: 10px;
+      top: 8px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       background: rgba(37, 211, 102, 0.25);
       color: #25D366;
-      padding: 3px 8px;
+      padding: 2px 6px;
       border-radius: 20px;
       font-weight: bold;
     }
 
-    /* --- Kandungan Utama (Portfolio) --- */
+    /* --- Kandungan Utama --- */
     .hero {
       text-align: center;
-      margin: 280px auto 4rem;
+      margin: 0 auto 4rem;
       max-width: 800px;
       position: relative;
       z-index: 10;
@@ -143,7 +135,7 @@
     .flip-card {
       width: 220px;
       height: 220px;
-      margin: 0 auto 2rem;
+      margin: 0 auto;
       perspective: 1000px;
     }
 
@@ -157,10 +149,6 @@
       box-shadow: 0 0 20px rgba(108, 92, 231, 0.7);
       border-radius: 20px;
       cursor: pointer;
-    }
-
-    .flip-card:hover .flip-card-inner {
-      transform: rotateY(180deg);
     }
 
     .flip-card-front, .flip-card-back {
@@ -300,8 +288,8 @@
   </style>
 </head>
 <body>
-  <!-- Titik gantung di tengah atas -->
-  <div id="anchor"></div>
+  <!-- Titik "leher" (akan ditentukan bawah kad flip) -->
+  <div id="neck-anchor"></div>
   <!-- Tali -->
   <div id="string"></div>
   <!-- Kad ID -->
@@ -312,8 +300,8 @@
     <div class="id-role">Founder & Engineer</div>
   </div>
 
-  <!-- Kandungan utama portfolio -->
-  <div class="hero">
+  <!-- Kandungan utama -->
+  <div class="hero" id="hero">
     <div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">
@@ -333,7 +321,7 @@
       </div>
     </div>
 
-    <h1 style="font-family: 'Poppins', sans-serif; font-size: 2.8rem; background: linear-gradient(90deg, #8870ff, #6c5ce7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">Inovator Teknologi & IoT</h1>
+    <h1 style="font-family: 'Poppins', sans-serif; font-size: 2.8rem; background: linear-gradient(90deg, #8870ff, #6c5ce7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 1.5rem 0 1rem;">Inovator Teknologi & IoT</h1>
     
     <div class="contact-banner">
       🚀 Untuk pertanyaan perniagaan atau kolaborasi, hubungi saya di 
@@ -379,16 +367,18 @@
   </footer>
 
   <script>
-    // === SIMULASI TALI & KAD 3D ===
+    // === SIMULASI KAD DIGANTUNG DI LEHER ===
     const card = document.getElementById('id-card');
     const string = document.getElementById('string');
-    const anchor = document.getElementById('anchor');
+    const neckAnchor = document.getElementById('neck-anchor');
+    const hero = document.getElementById('hero');
 
+    // Parameter fizikal (realistik untuk kad gantung di dada)
     const params = {
-      restLength: 180,   // panjang tali asal (dalam px)
-      gravity: 1.0,      // graviti
-      springK: 0.06,     // kekuatan spring
-      damping: 0.93,     // redaman (bounce)
+      restLength: 120,   // panjang tali asal (~dari leher ke dada)
+      gravity: 0.7,      // graviti ringan
+      springK: 0.07,     // elastik tali
+      damping: 0.92,     // sedikit bounce
       isDragging: false,
       mouseX: 0,
       mouseY: 0
@@ -401,16 +391,21 @@
       vy: 0
     };
 
-    const anchorY = 80; // tetap di tengah atas
-    let anchorX = window.innerWidth / 2;
+    let anchorX = 0;
+    let anchorY = 0;
 
-    function updateAnchor() {
-      anchorX = window.innerWidth / 2;
-      anchor.style.left = (anchorX - 6) + 'px';
+    function updateAnchorPosition() {
+      const rect = hero.getBoundingClientRect();
+      // Titik "leher": di bawah kad flip (tengah bawah hero)
+      anchorY = rect.bottom + 20; // 20px di bawah
+      anchorX = rect.left + rect.width / 2;
+      
+      neckAnchor.style.left = (anchorX - 5) + 'px';
+      neckAnchor.style.top = (anchorY - 5) + 'px';
     }
 
-    window.addEventListener('resize', updateAnchor);
-    updateAnchor();
+    window.addEventListener('resize', updateAnchorPosition);
+    updateAnchorPosition();
 
     // Input
     card.addEventListener('mousedown', startDrag);
@@ -450,8 +445,10 @@
       document.removeEventListener('touchend', stopDrag);
     }
 
-    // Simulasi fizikal + visual
+    // Simulasi
     function simulate() {
+      updateAnchorPosition();
+
       if (params.isDragging) {
         state.x = params.mouseX - anchorX;
         state.y = params.mouseY - anchorY;
@@ -479,20 +476,18 @@
       card.style.left = cardX + 'px';
       card.style.top = cardY + 'px';
 
-      // Panjang & sudut tali
+      // Tali
       const length = Math.sqrt(state.x * state.x + state.y * state.y);
-      const angle = Math.atan2(state.y, state.x); // radian
-
-      // Update tali
+      const angle = Math.atan2(state.y, state.x);
       string.style.height = length + 'px';
-      string.style.transform = `rotate(${angle}rad)`;
       string.style.top = anchorY + 'px';
       string.style.left = anchorX + 'px';
+      string.style.transform = `rotate(${angle}rad)`;
       string.style.transformOrigin = 'top center';
 
-      // 3D Rotation kad (ikut ayunan)
-      const rotY = state.x * 0.03; // sensitiviti
-      const rotX = -state.y * 0.01;
+      // 3D Rotation (realistik saat bergoyang)
+      const rotY = state.x * 0.025;
+      const rotX = -state.y * 0.008;
       card.style.transform = `rotateX(${rotX}rad) rotateY(${rotY}rad)`;
 
       requestAnimationFrame(simulate);
