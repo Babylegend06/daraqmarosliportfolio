@@ -19,9 +19,9 @@
       --card-front: #141228;
       --card-back: #1a1732;
       --accent: #6c5ce7;
-      --whatsapp: #25D366;
+      --accent-glow: #8870ff;
       --text: #f0f0ff;
-      --id-card-bg: #121025;
+      --glow: 0 0 15px rgba(108, 92, 231, 0.6);
     }
 
     body {
@@ -29,24 +29,22 @@
       background: linear-gradient(135deg, #0c0a1f, #1a172c, #241f3a);
       color: var(--text);
       min-height: 100vh;
-      padding: 2rem 1.5rem;
+      padding: 2.5rem 1.5rem;
       overflow-x: hidden;
-      position: relative;
     }
 
-    /* --- Kandungan Utama (Kad Flip) --- */
     .hero {
       text-align: center;
-      margin: 0 auto 4rem;
+      margin-bottom: 4rem;
       max-width: 800px;
-      position: relative;
-      z-index: 10;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .flip-card {
       width: 220px;
       height: 220px;
-      margin: 0 auto;
+      margin: 0 auto 2rem;
       perspective: 1000px;
     }
 
@@ -57,12 +55,17 @@
       text-align: center;
       transition: transform 0.8s;
       transform-style: preserve-3d;
-      box-shadow: 0 0 20px rgba(108, 92, 231, 0.7);
+      box-shadow: var(--glow);
       border-radius: 20px;
       cursor: pointer;
     }
 
-    .flip-card-front, .flip-card-back {
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -75,8 +78,16 @@
       padding: 1.2rem;
     }
 
-    .flip-card-front { background: var(--card-front); border: 2px solid var(--accent); }
-    .flip-card-back { background: var(--card-back); transform: rotateY(180deg); border: 2px solid var(--whatsapp); }
+    .flip-card-front {
+      background: var(--card-front);
+      border: 2px solid var(--accent);
+    }
+
+    .flip-card-back {
+      background: var(--card-back);
+      transform: rotateY(180deg);
+      border: 2px solid #25D366;
+    }
 
     .profile-img {
       width: 140px;
@@ -94,6 +105,8 @@
       color: #777;
       font-size: 0.85rem;
       text-align: center;
+      background: #1a172c;
+      border: 3px dashed #555;
     }
 
     .flip-card h2 {
@@ -117,7 +130,7 @@
     }
 
     .contact-banner a {
-      color: var(--whatsapp);
+      color: #25D366;
       font-weight: 800;
       text-decoration: none;
       margin-left: 0.4rem;
@@ -133,24 +146,6 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 12px rgba(108, 92, 231, 0.3);
-    }
-
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 1.5rem;
-      padding: 0 1rem;
-    }
-
-    .skill-tag {
-      background: rgba(108, 92, 231, 0.15);
-      color: #a29bfe;
-      padding: 0.4rem 1rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      border: 1px solid rgba(108, 92, 231, 0.3);
     }
 
     .projects-grid {
@@ -189,6 +184,23 @@
       color: #e0e0ff;
     }
 
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .skill-tag {
+      background: rgba(108, 92, 231, 0.15);
+      color: #a29bfe;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(108, 92, 231, 0.3);
+    }
+
     footer {
       text-align: center;
       margin-top: 5rem;
@@ -197,111 +209,36 @@
       font-size: 0.95rem;
     }
 
-    /* --- KAD GANTUNG DUAL-STRAP --- */
-    #dual-container {
-      position: relative;
-      width: 100%;
-      height: 400px;
-      margin: 0 auto 3rem;
-      max-width: 600px;
-      perspective: 1400px;
-    }
-
-    /* Titik gantung (dua) */
-    .anchor-point {
-      position: absolute;
-      top: 40px;
-      width: 12px;
-      height: 12px;
-      background: #6c5ce7;
-      border-radius: 50%;
-      box-shadow: 0 0 10px rgba(108, 92, 231, 0.7);
-    }
-
-    #anchor-left { left: calc(50% - 100px); }
-    #anchor-right { right: calc(50% - 100px); }
-
-    /* Kad ID */
-    #id-card {
-      position: absolute;
-      width: 224px; /* 56 * 4 */
-      height: 320px; /* 80 * 4 */
-      background: var(--id-card-bg);
-      border: 1px solid rgba(108, 92, 231, 0.4);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      cursor: grab;
-      user-select: none;
-      transform-style: preserve-3d;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    #id-card:active {
-      cursor: grabbing;
-    }
-
-    .id-logo {
-      background: rgba(37, 211, 102, 0.25);
-      color: #25D366;
-      padding: 4px 12px;
-      border-radius: 30px;
-      font-size: 0.75rem;
-      font-weight: bold;
-      display: inline-block;
-      margin-bottom: 12px;
-    }
-
-    .id-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      font-size: 1.2rem;
-      margin-bottom: 12px;
-      box-shadow: 0 0 15px rgba(108, 92, 231, 0.7);
-    }
-
-    .id-name {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: #e0e0ff;
-    }
-
-    .id-role {
-      font-size: 0.85rem;
-      color: #a29bfe;
-    }
-
-    .id-expiry {
-      font-size: 0.8rem;
-      color: #64748b;
-      text-align: right;
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+        padding: 0 0.5rem;
+      }
+      .flip-card {
+        width: 180px;
+        height: 180px;
+      }
+      .profile-img {
+        width: 110px;
+        height: 110px;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Kad Utama (Flip) -->
-  <div class="hero" id="hero">
-    <div class="flip-card">
-      <div class="flip-card-inner">
+  <div class="hero">
+    <div class="flip-card" id="flipCard">
+      <div class="flip-card-inner" id="flipCardInner">
         <div class="flip-card-front">
-          <div>
-            <img 
-              src="gambarmuka.jpg" 
-              alt="DAR AQMA" 
-              class="profile-img"
-              onerror="this.classList.add('placeholder'); this.src=''; this.innerHTML = 'gambarmuka.jpg<br>(220x220)';"
-            >
-          </div>
+          <img 
+            src="gambarmuka.jpg" 
+            alt="DAR AQMA" 
+            class="profile-img"
+            id="profileImg"
+          >
         </div>
         <div class="flip-card-back">
           <h2>DAR AQMA</h2>
@@ -310,7 +247,7 @@
       </div>
     </div>
 
-    <h1 style="font-family: 'Poppins', sans-serif; font-size: 2.8rem; background: linear-gradient(90deg, #8870ff, #6c5ce7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 1.5rem 0 1rem;">Inovator Teknologi & IoT</h1>
+    <h1 style="font-family: 'Poppins', sans-serif; font-size: 2.8rem; background: linear-gradient(90deg, #8870ff, #6c5ce7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">Inovator Teknologi & IoT</h1>
     
     <div class="contact-banner">
       🚀 Untuk pertanyaan perniagaan atau kolaborasi, hubungi saya di 
@@ -318,19 +255,6 @@
     </div>
   </div>
 
-  <!-- Dual-Strap Student ID -->
-  <div id="dual-container">
-    <div id="anchor-left" class="anchor-point"></div>
-    <div id="anchor-right" class="anchor-point"></div>
-
-    <!-- Tali (SVG) -->
-    <svg id="straps-svg" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 90;"></svg>
-
-    <!-- Kad ID -->
-    <div id="id-card"></div>
-  </div>
-
-  <!-- Kandungan Portfolio -->
   <h2 class="section-title">Kemahiran Utama</h2>
   <div class="skills-list">
     <span class="skill-tag">ESP32 & Arduino</span>
@@ -347,15 +271,15 @@
   <div class="projects-grid">
     <div class="project-card">
       <h3>Smart Dobi QR</h3>
-      <p>Sistem IoT untuk dobi: scan QR → bayar → ESP32 aktifkan mesin → notifikasi WhatsApp.</p>
+      <p>Sistem IoT untuk dobi: scan QR → bayar → ESP32 aktifkan mesin → notifikasi WhatsApp via CallMeBot API.</p>
     </div>
     <div class="project-card">
       <h3>ESP32 + PLC Integration</h3>
-      <p>ESP32 baca isyarat dari PLC Omron CP1E dan paparkan data secara real-time di Blynk.</p>
+      <p>ESP32 baca isyarat dari PLC Omron CP1E dan paparkan data secara real-time di dashboard Blynk.</p>
     </div>
     <div class="project-card">
       <h3>Auto-Off Signal Moto</h3>
-      <p>Sistem pintar untuk Y15ZR V2: guna MPU6050 & ESP32 untuk matikan signal secara automatik.</p>
+      <p>Sistem pintar untuk Y15ZR V2: guna MPU6050 & ESP32 untuk matikan signal secara automatik berdasarkan sudut.</p>
     </div>
     <div class="project-card">
       <h3>Aplikasi Panduan Solat</h3>
@@ -365,163 +289,39 @@
 
   <footer>
     © 2025 DAR AQMA BIN ROSLI • Techxy Solutions<br>
-    Portfolio Interaktif dengan Fizikal Digital
+    Portfolio Interaktif | Dibina dengan Teknologi & Kreativiti
   </footer>
 
   <script>
-    // === DUAL-STRAP PHYSICS (Adapted from React version) ===
-    const container = document.getElementById('dual-container');
-    const card = document.getElementById('id-card');
-    const svg = document.getElementById('straps-svg');
+    // Handle image error fallback
+    const img = document.getElementById('profileImg');
+    img.onerror = function() {
+      this.style.display = 'none';
+      const fallback = document.createElement('div');
+      fallback.className = 'profile-img placeholder';
+      fallback.innerHTML = 'gambarmuka.jpg<br>(220x220)';
+      this.parentNode.appendChild(fallback);
+    };
 
-    // Anchor positions (relative to container center)
-    const anchorLeft = { x: -100, y: -180 };
-    const anchorRight = { x: 100, y: -180 };
+    // Mobile touch flip (simplified)
+    const flipCard = document.getElementById('flipCard');
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-    // Physics
-    const pos = { x: 0, y: 0 };
-    const vel = { x: 0, y: 0 };
-    const mass = 0.35;
-    const k = 0.12;        // elastic stiffness
-    const damping = 0.88;
-    const restLength = 220; // natural strap length
-
-    let dragging = false;
-    let rafId = null;
-
-    // Initialize card content
-    card.innerHTML = `
-      <div>
-        <div class="id-logo">TECHXY</div>
-        <div class="id-avatar">D</div>
-        <div class="id-name">DAR AQMA</div>
-        <div class="id-role">Founder & Engineer</div>
-      </div>
-      <div class="id-expiry">Sah sehingga 2025</div>
-    `;
-
-    // Get container center
-    function getCenter() {
-      const rect = container.getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-    }
-
-    // Convert screen to local
-    function toLocal(clientX, clientY) {
-      const center = getCenter();
-      return { x: clientX - center.x, y: clientY - center.y };
-    }
-
-    // Strap force (Hooke's law)
-    function strapForce(anchor, pos) {
-      const dx = pos.x - anchor.x;
-      const dy = pos.y - anchor.y;
-      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-      const stretch = dist - restLength;
-      const forceMag = k * stretch;
-      return {
-        x: -(dx / dist) * forceMag,
-        y: -(dy / dist) * forceMag
-      };
-    }
-
-    // Update physics
-    function updatePhysics() {
-      const f1 = strapForce(anchorLeft, pos);
-      const f2 = strapForce(anchorRight, pos);
-
-      let fx = f1.x + f2.x;
-      let fy = f1.y + f2.y + 0.5; // gravity
-
-      vel.x += fx / mass;
-      vel.y += fy / mass;
-
-      vel.x *= damping;
-      vel.y *= damping;
-
-      pos.x += vel.x;
-      pos.y += vel.y;
-    }
-
-    // Update visuals
-    function render() {
-      const center = getCenter();
-      const cardX = center.x + pos.x - card.offsetWidth / 2;
-      const cardY = center.y + pos.y - card.offsetHeight / 2;
-
-      // Update card position & rotation
-      const rotY = vel.x * 1.2;
-      const rotX = -vel.y * 1.2;
-      const rotZ = vel.x * 0.2;
-      card.style.transform = `translate(${pos.x}px, ${pos.y}px) rotateY(${rotY}deg) rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
-      card.style.left = '50%';
-      card.style.top = '50%';
-      card.style.transform = `translate(calc(-50% + ${pos.x}px), calc(-50% + ${pos.y}px)) rotateY(${rotY}deg) rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
-
-      // Update SVG straps
-      svg.innerHTML = `
-        <line x1="${anchorLeft.x}" y1="${anchorLeft.y}" x2="${pos.x}" y2="${pos.y}" 
-              stroke="#8870ff" stroke-width="4" stroke-linecap="round" />
-        <line x1="${anchorRight.x}" y1="${anchorRight.y}" x2="${pos.x}" y2="${pos.y}" 
-              stroke="#8870ff" stroke-width="4" stroke-linecap="round" />
-      `;
-      svg.setAttribute('viewBox', `${-300} ${-300} 600 600`);
-    }
-
-    // Animation loop
-    function loop() {
-      if (!dragging) updatePhysics();
-      render();
-      rafId = requestAnimationFrame(loop);
-    }
-
-    // Events
-    card.addEventListener('mousedown', (e) => {
-      dragging = true;
-      const p = toLocal(e.clientX, e.clientY);
-      pos.x = p.x;
-      pos.y = p.y;
-      vel.x = vel.y = 0;
+    flipCard.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
     });
 
-    window.addEventListener('mousemove', (e) => {
-      if (!dragging) return;
-      const p = toLocal(e.clientX, e.clientY);
-      pos.x = p.x;
-      pos.y = p.y;
+    flipCard.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) {
+        // Swipe left → flip
+        document.getElementById('flipCardInner').style.transform = 'rotateY(180deg)';
+      } else if (touchEndX - touchStartX > 50) {
+        // Swipe right → unflip
+        document.getElementById('flipCardInner').style.transform = 'rotateY(0deg)';
+      }
     });
-
-    window.addEventListener('mouseup', () => {
-      dragging = false;
-    });
-
-    // Touch support
-    card.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      dragging = true;
-      const touch = e.touches[0];
-      const p = toLocal(touch.clientX, touch.clientY);
-      pos.x = p.x;
-      pos.y = p.y;
-      vel.x = vel.y = 0;
-    });
-
-    window.addEventListener('touchmove', (e) => {
-      if (!dragging) return;
-      e.preventDefault();
-      const touch = e.touches[0];
-      const p = toLocal(touch.clientX, touch.clientY);
-      pos.x = p.x;
-      pos.y = p.y;
-    });
-
-    window.addEventListener('touchend', () => {
-      dragging = false;
-    });
-
-    // Start
-    window.addEventListener('resize', render);
-    rafId = requestAnimationFrame(loop);
   </script>
 </body>
 </html>
