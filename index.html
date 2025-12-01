@@ -2,7 +2,7 @@
 <html lang="ms">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name=" viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DAR AQMA | Techxy Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,9 +19,8 @@
       --card-front: #141228;
       --card-back: #1a1732;
       --accent: #6c5ce7;
-      --accent-glow: #8870ff;
-      --text: #f0f0ff;
       --whatsapp: #25D366;
+      --text: #f0f0ff;
       --id-card-bg: #121025;
     }
 
@@ -35,13 +34,12 @@
       position: relative;
     }
 
-    /* ===== KAD UTAMA (FLIP) ===== */
+    /* --- KAD UTAMA (FLIP) --- */
     .hero {
       text-align: center;
       margin-bottom: 4rem;
       max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto 4rem;
       position: relative;
       z-index: 10;
     }
@@ -69,8 +67,7 @@
       transform: rotateY(180deg);
     }
 
-    .flip-card-front,
-    .flip-card-back {
+    .flip-card-front, .flip-card-back {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -83,16 +80,8 @@
       padding: 1.2rem;
     }
 
-    .flip-card-front {
-      background: var(--card-front);
-      border: 2px solid var(--accent);
-    }
-
-    .flip-card-back {
-      background: var(--card-back);
-      transform: rotateY(180deg);
-      border: 2px solid var(--whatsapp);
-    }
+    .flip-card-front { background: var(--card-front); border: 2px solid var(--accent); }
+    .flip-card-back { background: var(--card-back); transform: rotateY(180deg); border: 2px solid var(--whatsapp); }
 
     .profile-img {
       width: 140px;
@@ -140,7 +129,6 @@
       font-family: 'Poppins', sans-serif;
     }
 
-    /* ===== TAJUK & KANDUNGAN ===== */
     .section-title {
       font-family: 'Poppins', sans-serif;
       font-size: 2.2rem;
@@ -214,33 +202,39 @@
       font-size: 0.95rem;
     }
 
-    /* ===== KAD ID BERTALI (DRAGGABLE) ===== */
+    /* --- KAD GANTUNG (HANGING ID CARD) --- */
+    #hanging-point {
+      position: absolute;
+      top: 60px;
+      right: 100px;
+      width: 8px;
+      height: 8px;
+      background: #6c5ce7;
+      border-radius: 50%;
+      z-index: 99;
+      box-shadow: 0 0 8px #6c5ce7;
+    }
+
     #id-card {
       position: absolute;
-      top: 80px;
-      right: 30px;
       width: 130px;
       height: 180px;
       background: var(--id-card-bg);
       border-radius: 12px;
       border: 1px solid rgba(108, 92, 231, 0.4);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-      z-index: 100;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      z-index: 98;
       cursor: grab;
       user-select: none;
-      transition: box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 12px;
+      transform-origin: top center;
     }
 
     #id-card:active {
       cursor: grabbing;
-    }
-
-    #id-card:hover {
-      box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
     }
 
     .id-avatar {
@@ -258,19 +252,8 @@
       box-shadow: 0 0 10px rgba(108, 92, 231, 0.6);
     }
 
-    .id-name {
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-align: center;
-      color: #e0e0ff;
-      margin-bottom: 4px;
-    }
-
-    .id-role {
-      font-size: 0.7rem;
-      color: #a29bfe;
-      text-align: center;
-    }
+    .id-name { font-size: 0.85rem; font-weight: 700; text-align: center; color: #e0e0ff; margin-bottom: 4px; }
+    .id-role { font-size: 0.7rem; color: #a29bfe; text-align: center; }
 
     .id-logo {
       position: absolute;
@@ -285,14 +268,9 @@
       font-weight: bold;
     }
 
-    /* Responsif */
     @media (max-width: 768px) {
-      #id-card {
-        top: 70px;
-        right: 15px;
-        width: 110px;
-        height: 150px;
-      }
+      #hanging-point { top: 50px; right: 80px; }
+      #id-card { width: 110px; height: 150px; }
       .id-avatar { width: 50px; height: 50px; font-size: 0.9rem; }
       .id-name { font-size: 0.75rem; }
       .id-role { font-size: 0.6rem; }
@@ -300,7 +278,10 @@
   </style>
 </head>
 <body>
-  <!-- KAD ID BERTALI (DRAGGABLE) -->
+  <!-- Titik gantung (tidak kelihatan jika tak mahu) -->
+  <div id="hanging-point"></div>
+
+  <!-- Kad ID yang digantung -->
   <div id="id-card">
     <div class="id-logo">TECHXY</div>
     <div class="id-avatar">D</div>
@@ -308,7 +289,7 @@
     <div class="id-role">Founder & Engineer</div>
   </div>
 
-  <!-- KANDUNGAN UTAMA -->
+  <!-- Kandungan utama -->
   <div class="hero">
     <div class="flip-card">
       <div class="flip-card-inner">
@@ -353,15 +334,15 @@
   <div class="projects-grid">
     <div class="project-card">
       <h3>Smart Dobi QR</h3>
-      <p>Sistem IoT untuk dobi: scan QR → bayar → ESP32 aktifkan mesin → notifikasi WhatsApp via CallMeBot API.</p>
+      <p>Sistem IoT untuk dobi: scan QR → bayar → ESP32 aktifkan mesin → notifikasi WhatsApp.</p>
     </div>
     <div class="project-card">
       <h3>ESP32 + PLC Integration</h3>
-      <p>ESP32 baca isyarat dari PLC Omron CP1E dan paparkan data secara real-time di dashboard Blynk.</p>
+      <p>ESP32 baca isyarat dari PLC Omron CP1E dan paparkan data secara real-time di Blynk.</p>
     </div>
     <div class="project-card">
       <h3>Auto-Off Signal Moto</h3>
-      <p>Sistem pintar untuk Y15ZR V2: guna MPU6050 & ESP32 untuk matikan signal secara automatik berdasarkan sudut.</p>
+      <p>Sistem pintar untuk Y15ZR V2: guna MPU6050 & ESP32 untuk matikan signal secara automatik.</p>
     </div>
     <div class="project-card">
       <h3>Aplikasi Panduan Solat</h3>
@@ -375,44 +356,58 @@
   </footer>
 
   <script>
-    // === FUNGSI KAD ID BERTALI (DRAG + SPRING) ===
-    const idCard = document.getElementById('id-card');
-    let isDragging = false;
-    let offsetX, offsetY;
-    const springPos = { x: window.innerWidth - 160, y: 80 }; // posisi asal
-    let currentPos = { ...springPos };
-    let velocity = { x: 0, y: 0 };
-    let animationId = null;
+    // === FIZIKAL KAD GANTUNG (HANGING + SPRING + GRAVITY) ===
+    const card = document.getElementById('id-card');
+    const hangingPoint = document.getElementById('hanging-point');
+    
+    // Parameter fizikal (boleh adjust!)
+    const params = {
+      restLength: 80,    // panjang tali asal (dalam px)
+      gravity: 0.8,      // graviti
+      springK: 0.08,     // kekuatan spring (elastik)
+      damping: 0.94,     // redaman (0.9 = bounce, 0.99 = smooth)
+      mouseX: 0,
+      mouseY: 0,
+      isDragging: false
+    };
 
-    // Tetapkan posisi asal mengikut saiz skrin
-    function setOriginalPosition() {
-      springPos.x = window.innerWidth - 160;
-      springPos.y = 80;
+    // Keadaan simulasi
+    let state = {
+      x: 0,
+      y: params.restLength,
+      vx: 0,
+      vy: 0
+    };
+
+    // Kedudukan titik gantung (atas)
+    let anchorX = window.innerWidth - 100;
+    let anchorY = 60;
+
+    function updateAnchor() {
+      anchorX = window.innerWidth - 100;
+      anchorY = 60;
       if (window.innerWidth < 768) {
-        springPos.x = window.innerWidth - 125;
-        springPos.y = 70;
+        anchorX = window.innerWidth - 80;
+        anchorY = 50;
       }
+      hangingPoint.style.left = (anchorX - 4) + 'px';
+      hangingPoint.style.top = (anchorY - 4) + 'px';
     }
 
-    window.addEventListener('resize', setOriginalPosition);
-    setOriginalPosition();
+    window.addEventListener('resize', updateAnchor);
+    updateAnchor();
 
-    idCard.addEventListener('mousedown', startDrag);
-    idCard.addEventListener('touchstart', e => {
+    // Input tetikus / sentuh
+    card.addEventListener('mousedown', startDrag);
+    card.addEventListener('touchstart', e => {
       e.preventDefault();
       startDrag(e.touches[0]);
     });
 
     function startDrag(e) {
-      isDragging = true;
-      const rect = idCard.getBoundingClientRect();
-      if (e.clientX !== undefined) {
-        offsetX = e.clientX - rect.left;
-        offsetY = e.clientY - rect.top;
-      } else {
-        offsetX = e.clientX - rect.left;
-        offsetY = e.clientY - rect.top;
-      }
+      params.isDragging = true;
+      params.mouseX = e.clientX || e.touches?.[0].clientX;
+      params.mouseY = e.clientY || e.touches?.[0].clientY;
       document.addEventListener('mousemove', onDrag);
       document.addEventListener('touchmove', onDragTouch, { passive: false });
       document.addEventListener('mouseup', stopDrag);
@@ -420,66 +415,67 @@
     }
 
     function onDrag(e) {
-      if (!isDragging) return;
-      currentPos.x = e.clientX - offsetX;
-      currentPos.y = e.clientY - offsetY;
-      idCard.style.transform = `translate(${currentPos.x - springPos.x}px, ${currentPos.y - springPos.y}px)`;
-      velocity.x = velocity.y = 0; // hentikan spring bila drag
+      if (!params.isDragging) return;
+      params.mouseX = e.clientX;
+      params.mouseY = e.clientY;
     }
 
     function onDragTouch(e) {
-      if (!isDragging) return;
-      const touch = e.touches[0];
-      currentPos.x = touch.clientX - offsetX;
-      currentPos.y = touch.clientY - offsetY;
-      idCard.style.transform = `translate(${currentPos.x - springPos.x}px, ${currentPos.y - springPos.y}px)`;
-      velocity.x = velocity.y = 0;
+      if (!params.isDragging) return;
+      params.mouseX = e.touches[0].clientX;
+      params.mouseY = e.touches[0].clientY;
       e.preventDefault();
     }
 
     function stopDrag() {
-      isDragging = false;
-      document.removeEventListener('mousemove', onDrang);
+      params.isDragging = false;
+      document.removeEventListener('mousemove', onDrag);
       document.removeEventListener('touchmove', onDragTouch);
       document.removeEventListener('mouseup', stopDrag);
       document.removeEventListener('touchend', stopDrag);
-      startSpringAnimation();
     }
 
-    function startSpringAnimation() {
-      if (animationId) cancelAnimationFrame(animationId);
-      springAnimate();
-    }
-
-    function springAnimate() {
-      const dx = springPos.x - currentPos.x;
-      const dy = springPos.y - currentPos.y;
-      const friction = 0.85;
-      const springStrength = 0.2;
-
-      velocity.x = velocity.x * friction + dx * springStrength;
-      velocity.y = velocity.y * friction + dy * springStrength;
-
-      currentPos.x += velocity.x;
-      currentPos.y += velocity.y;
-
-      idCard.style.transform = `translate(${currentPos.x - springPos.x}px, ${currentPos.y - springPos.y}px)`;
-
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      if (distance > 0.5 || Math.abs(velocity.x) > 0.1 || Math.abs(velocity.y) > 0.1) {
-        animationId = requestAnimationFrame(springAnimate);
+    // Simulasi fizikal utama
+    function simulate() {
+      if (params.isDragging) {
+        // Kalau sedang ditarik, ikut tetikus
+        const dx = (params.mouseX - anchorX) - state.x;
+        const dy = (params.mouseY - anchorY) - state.y;
+        state.vx = dx * 0.3;
+        state.vy = dy * 0.3;
+        state.x = params.mouseX - anchorX;
+        state.y = params.mouseY - anchorY;
       } else {
-        currentPos = { ...springPos };
-        idCard.style.transform = 'translate(0,0)';
+        // Spring + gravity
+        const length = Math.sqrt(state.x * state.x + state.y * state.y);
+        const stretch = length - params.restLength;
+        const springForce = stretch * params.springK;
+
+        const fx = -springForce * (state.x / (length || 1));
+        const fy = -springForce * (state.y / (length || 1)) + params.gravity;
+
+        state.vx += fx;
+        state.vy += fy;
+        state.vx *= params.damping;
+        state.vy *= params.damping;
+
+        state.x += state.vx;
+        state.y += state.vy;
       }
+
+      // Update posisi kad
+      card.style.left = (anchorX + state.x - card.offsetWidth / 2) + 'px';
+      card.style.top = (anchorY + state.y) + 'px';
+
+      // Rotate kad berdasarkan sudut tali
+      const angle = Math.atan2(state.y, state.x) + Math.PI / 2;
+      card.style.transform = `rotate(${angle}rad)`;
+
+      requestAnimationFrame(simulate);
     }
 
-    // === FLIP CARD INTERAKSI (sedia ada) ===
-    document.querySelectorAll('.flip-card').forEach(card => {
-      card.addEventListener('click', () => {
-        card.querySelector('.flip-card-inner').classList.toggle('flipped');
-      });
-    });
+    // Mulakan simulasi
+    simulate();
   </script>
 </body>
 </html>
